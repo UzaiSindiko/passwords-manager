@@ -1,0 +1,22 @@
+.home {
+    font-family: 'Sulphur Point', sans-serif;
+}
+
+.menu {
+    width: 100;
+    padding: 10px;
+}
+
+.menu span {
+    font-size: 30px;
+    color: #272727;
+    cursor: pointer;
+}
+
+.menu span:hover {
+    text-decoration: underline;
+}
+
+.nest-con {
+    padding: 10px 50px;
+}

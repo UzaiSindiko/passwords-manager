@@ -1,0 +1,46 @@
+.add {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #0069ff;
+    cursor: pointer;
+    position: fixed;
+    top: 85%;
+    left: 90%;
+}
+
+.add i{
+    font-size: 20px;
+    color: white;
+}
+
+.form-add-con{
+    position: fixed; /* Stay in place */
+    z-index: 1020; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.233)
+}
+
+
+.from-add{
+    width: 800px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 30px;
+}
+
+.from-add input, textarea{
+    width: 80%;
+    padding: 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(195, 195, 195, 0.315);
+    outline: none;
+}
+
+
