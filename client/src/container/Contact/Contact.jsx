@@ -155,7 +155,7 @@ export default function Contact() {
                 }
             </div>
 
-            {isForm && (<div className="form-add-con d-flex align-items-center justify-content-center">
+            {isForm && (<div id="contact-form" className="form-add-con d-flex align-items-center justify-content-center">
                 <div className="from-add mymargin">
                 <span onClick={() => { closeFrom()} } className="close">x</span>
                     <h1 data-testid="title-form-contact" className="text-center">Add New Contact</h1>

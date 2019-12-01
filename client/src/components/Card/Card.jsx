@@ -15,7 +15,7 @@ export default function Card(props) {
 
 
     return (
-        <div  data-testid="card" className="pass-card">
+        <div  id="card" data-testid="card" className="pass-card">
             <div className="d-flex">
                 <div className="icon">
                     <a href={url} target="_blank" > <img src={`//logo.clearbit.com/${props.URL}?size=100`} alt=""/> </a>

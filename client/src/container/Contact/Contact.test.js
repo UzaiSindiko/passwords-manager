@@ -15,8 +15,8 @@ test('use jsdom in this test file', () => {
     expect(element).not.toBeNull();
   });
 
-describe ('check contain text in Passwords page', () =>{
-    test('Passwords page have intented text', ()=>{
+describe ('check contain text in Contact page', () =>{
+    test('Contact page have intented text', ()=>{
       const { getByTestId } = render(
         <Provider store={store}>
           <Router>
@@ -28,7 +28,7 @@ describe ('check contain text in Passwords page', () =>{
     })
   })
 
-  describe ('check click function in Password Page', () =>{
+  describe ('check click function in Contact Page', () =>{
     test('check from is appear when add buttom cliked', ()=>{
       const {container, getByTestId} = render(
         <Provider store={store}>
@@ -43,7 +43,7 @@ describe ('check contain text in Passwords page', () =>{
     })
   })
 
-describe ('Search Password', () =>{
+describe ('Search Contact', () =>{
     test('check search should return a result when user type on search bar', ()=>{
       const {container, getByTestId} = render(
         <Provider store={store}>
@@ -60,7 +60,7 @@ describe ('Search Password', () =>{
 
 
 describe ('Create Contact', () =>{
-  test('It should create new contact when all requirement is fulfilled ', async ()=>{
+  test('It should create new contact when all requirement is fulfilled ', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -101,7 +101,7 @@ describe ('Create Contact', () =>{
 })
 
 describe ('Fail Create Contact', () =>{
-  test('It should show error when one of requirement is not fulfilled ', async ()=>{
+  test('It should show error when one of requirement is not fulfilled ', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -117,7 +117,7 @@ describe ('Fail Create Contact', () =>{
 })
 
 describe ('Update Contact', () =>{
-  test('check update btn', async ()=>{
+  test('check update btn',()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -126,11 +126,17 @@ describe ('Update Contact', () =>{
     </Provider>
     )
     fireEvent.click(getByTestId('card-update-btn'))
+    expect(getByTestId('title-form-contact')).toBeInTheDocument()
+    expect(getByTestId('title-form-contact')).toHaveTextContent(/Add New Contact/i)
+    expect(getByTestId('input-title').value).toBe('satu')
+    fireEvent.submit(getByTestId('create-contact-btn'))
+    const contactForm = document.querySelector('contact-form')
+    expect(contactForm).not.toBeInTheDocument()
   })
 })
 
 describe ('Delete Contact', () =>{
-  test('check delete btn', async ()=>{
+  test('check delete btn', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -139,5 +145,7 @@ describe ('Delete Contact', () =>{
     </Provider>
     )
     fireEvent.click(getByTestId('card-delete-btn'))
+    const card = document.querySelector('card')
+    expect(card).not.toBeInTheDocument()
   })
 })

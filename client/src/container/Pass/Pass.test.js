@@ -59,7 +59,7 @@ describe ('Search Password', () =>{
 })
 
 describe ('Password Strength Cheker', () =>{
-  test('The checker color sould turn green (34eb1c) when all requirement is fulfilled', async ()=>{
+  test('The checker color sould turn green (34eb1c) when all requirement is fulfilled', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -90,7 +90,7 @@ describe ('Password Strength Cheker', () =>{
 })
 
 describe ('Create Password', () =>{
-  test('It should create new password when one of requirement is fulfilled ', async ()=>{
+  test('It should create new password when one of requirement is fulfilled ', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -127,7 +127,7 @@ describe ('Create Password', () =>{
 })
 
 describe ('Fail Create Password', () =>{
-  test('It should show error when all requirement is not fulfilled ', async ()=>{
+  test('It should show error when all requirement is not fulfilled ', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -143,7 +143,7 @@ describe ('Fail Create Password', () =>{
 })
 
 describe ('Update Password', () =>{
-  test('check update btn', async ()=>{
+  test('check update btn', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>
@@ -156,7 +156,7 @@ describe ('Update Password', () =>{
 })
 
 describe ('Delete Password', () =>{
-  test('check delete btn', async ()=>{
+  test('check delete btn', ()=>{
     const {container, getByTestId} = render(
     <Provider store={store}>
       <Router>

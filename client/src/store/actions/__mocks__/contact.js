@@ -123,7 +123,7 @@ export const searchContact = (q) => async dispatch => {
 
 export const getOneContact = (id) => async dispatch => {
     Swal.showLoading()
-    try {
+    if(id) {
        Swal.close()
        return dispatch ({
             type: 'GET_ONE_CONTACT',
@@ -143,7 +143,7 @@ export const getOneContact = (id) => async dispatch => {
                 "__v": 0
             },
         })
-    } catch (error) {
+    } else {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -152,7 +152,7 @@ export const getOneContact = (id) => async dispatch => {
 }
 
 export const updateContact = ({ 
-            id, 
+            id,
             Title,
             firstName,
             middleName,
@@ -165,41 +165,40 @@ export const updateContact = ({
             note  
         }) => async dispatch => {
     Swal.showLoading()
-    try {
-
-        await axios({
-            method: 'patch',
-            url: '/contacts/'+id,
-            headers: {
-                token : localStorage.getItem('token')
-            },
-            data: { 
-            Title,
-            firstName,
-            middleName,
-            lastName,
-            username,
-            gender,
-            company,
-            address,
-            phone,
-            note  
-            }
-        })
-        const { data } = await axios({
-            method: 'get',
-            url: '/contacts',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
+    if( id,
+        Title,
+        firstName,
+        middleName,
+        lastName,
+        username,
+        gender,
+        company,
+        address,
+        phone,
+        note  
+        ) {
         Swal.close()
         dispatch ({
             type: 'GET_CONTACT',
-            data
+            data :  [{
+                "_id": "5de3652c2b2eba589cc02cdc",
+                "userId": "5ddf8b8cad29641b3b4c8818",
+                "Title": "satu",
+                "firstName": "satu",
+                "middleName": "satu",
+                "lastName": "satu",
+                "username": "satu",
+                "gender": "male",
+                "company": "1995",
+                "address": "Jalan Teupineung No 33 Merduati Banda Aceh",
+                "phone": "+62085261400506",
+                "note": "sdfasdfaafdafasd",
+                "__v": 0
+            }],
         })
         
-    } catch (error) {
+    } 
+    else {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -210,21 +209,7 @@ export const updateContact = ({
 
 export const deleteContact = (id) => async dispatch => {
     Swal.showLoading()
-    try {
-        await axios({
-            method: 'delete',
-            url: '/contacts/'+id,
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
-        const { data } = await axios({
-            method: 'get',
-            url: 'contacts',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
+    if(id) {
         Swal.fire(
             'Deleted!',
             'Your file has been deleted.',
@@ -232,9 +217,9 @@ export const deleteContact = (id) => async dispatch => {
         )
         dispatch ({
             type: 'GET_CONTACT',
-            data
+            data : []
         })
-    } catch (error) {
+    } else {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',

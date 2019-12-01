@@ -29,7 +29,6 @@ describe("Login and Register should renders without crashing", ()=> {
         expect(document.querySelector('.swal2-title')).toHaveTextContent(/Success Logout/)
         
     })
-    debug()
 })
 
 describe ('renders Navbar', () =>{
