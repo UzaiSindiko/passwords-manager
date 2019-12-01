@@ -30,7 +30,30 @@ function users( state = initUsers, action ){
   }
 }
 
-const rootReducer = combineReducers({ users })
+
+const initPass = {
+    passwords: [],
+    OnePassword: {}
+}
+
+function pass(state = initPass, action){
+    switch (action.type) {
+        case 'GET_PASS':
+            return {
+                ...state,
+                passwords: action.data
+            }
+        case 'GET_ONE_PASS':
+            return {
+                ...state,
+                OnePassword: action.data
+            }
+        default:
+            return state
+    }
+}
+
+const rootReducer = combineReducers({ users, pass })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 

@@ -60,3 +60,9 @@ export const is_Login = () => {
         type: 'IS_LOGIN'
     }
 }
+
+export const logout = () => {
+    return {
+        type: 'LOGOUT'
+    }
+}

@@ -1,19 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Card.css'
 
-export default function Card() {
+export default function Card(props) {
+
+    const [url, setUrl] = useState('')
+
+    useEffect(() => {
+        if( !props.URL.match(/http/) && !props.URL.match(/https/)){
+            setUrl(`http://${props.URL}`)
+        } else{
+            setUrl(props.URL)
+        }
+    }, [])
+
+
     return (
         <div className="pass-card">
             <div className="d-flex">
                 <div className="icon">
-                    <img src="//logo.clearbit.com/spotify.com?size=95" alt=""/>
+                    <a href={url} target="_blank" > <img src={`//logo.clearbit.com/${props.URL}?size=100`} alt=""/> </a>
                 </div>
                 <div className="p-1">
-                    <h4>Name Password</h4>
-                    <span>uzai.sindiko@gmail.com</span>
+                    <h4>{props.name}</h4>
+                    <span>{ props.username }</span>
                     <div className="actions d-flex align-items-center justify-content-end">
-                        <i className="fas fa-pen"></i>
-                        <i className="fas fa-trash pl-3"></i>
+                        <i onClick={(e) => {  props.getOne(props.passId) } } className="fas fa-pen"></i>
+                        <i onClick={ (e) => {  props.del(props.passId) }  } className="fas fa-trash pl-3"></i>
                     </div>
                 </div>
             </div>
