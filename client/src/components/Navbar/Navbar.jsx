@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import './Navbar.css'
 import { logout } from '../../store/actions/users'
 import {

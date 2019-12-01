@@ -10,11 +10,6 @@ import {
 
 jest.mock('../../store/actions/Pass')
 
-test('use jsdom in this test file', () => {
-    const element = document.createElement('div');
-    expect(element).not.toBeNull();
-  });
-
 describe ('check contain text in Passwords page', () =>{
     test('Passwords page have intented text', ()=>{
       const { getByTestId } = render(
@@ -120,7 +115,7 @@ describe ('Create Password', () =>{
     fireEvent.change(getByTestId('input-note'), { target: { value: 'note'} })
     expect(getByTestId('input-note').value).toBe('note')
 
-    fireEvent.submit(getByTestId('crate-pass-btn'))
+    fireEvent.submit(getByTestId('submit-pass-btn'))
     expect(document.querySelector('.swal2-title')).toBeInTheDocument()
     expect(document.querySelector('.swal2-title')).toHaveTextContent(/Success Add Password/i)
   })
@@ -136,7 +131,7 @@ describe ('Fail Create Password', () =>{
     </Provider>
     )
     fireEvent.click(getByTestId('create-pass-btn'))
-    fireEvent.submit(getByTestId('crate-pass-btn'))
+    fireEvent.submit(getByTestId('submit-pass-btn'))
     expect(document.querySelector('.swal2-title')).toBeInTheDocument()
     expect(document.querySelector('.swal2-title')).toHaveTextContent(/Oops.../i)
   })
@@ -152,6 +147,12 @@ describe ('Update Password', () =>{
     </Provider>
     )
     fireEvent.click(getByTestId('card-update-btn'))
+    expect(getByTestId('title-form-pass')).toBeInTheDocument()
+    expect(getByTestId('title-form-pass')).toHaveTextContent(/Add New Password/i)
+    expect(getByTestId('input-name').value).toBe('Facebook@')
+    fireEvent.submit(getByTestId('submit-pass-btn'))
+    const passForm = document.querySelector('pass-form')
+    expect(passForm).not.toBeInTheDocument()
   })
 })
 
@@ -165,5 +166,7 @@ describe ('Delete Password', () =>{
     </Provider>
     )
     fireEvent.click(getByTestId('card-delete-btn'))
+    const card = document.querySelector('card')
+    expect(card).not.toBeInTheDocument()
   })
 })

@@ -95,7 +95,7 @@ export const getOnePass = (id) => async dispatch => {
         Swal.close()
        return dispatch ({
             type: 'GET_ONE_PASS',
-            data: [
+            data: 
                 {
                     "_id": "5de29aabcb934623be02c293",
                     "userId": "5ddf8b8cad29641b3b4c8818",
@@ -106,7 +106,6 @@ export const getOnePass = (id) => async dispatch => {
                     "note": "uzai1",
                     "__v": 0
                 }
-            ]
         })
     } catch (error) {
         Swal.fire({
@@ -119,25 +118,20 @@ export const getOnePass = (id) => async dispatch => {
 export const updatePass = ({ id, name, URL, username, password, note }) => async dispatch => {
     Swal.showLoading()
     if( id, name, URL, username, password, note && URL.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/) ) {    
-        await axios({
-            method: 'patch',
-            url: '/pass/'+id,
-            headers: {
-                token : localStorage.getItem('token')
-            },
-            data: { name, URL, username, password, note }
-        })
-        const { data } = await axios({
-            method: 'get',
-            url: 'pass',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
         Swal.close()
         dispatch ({
             type: 'GET_PASS',
-            data
+            data: [{
+
+                "_id": "5de29aabcb934623be02c293",
+                "userId": "5ddf8b8cad29641b3b4c8818",
+                "name": "Facebook@",
+                "URL": "www.facebok.com",
+                "username": "uzai.sindiko@gmail.com",
+                "password": "uzai sindiko",
+                "note": "uzai1",
+                "__v": 0
+            }]
         })
         
     } else {
@@ -151,20 +145,6 @@ export const updatePass = ({ id, name, URL, username, password, note }) => async
 export const deletePass = (id) => async dispatch => {
     Swal.showLoading()
     try {
-        await axios({
-            method: 'delete',
-            url: '/pass/'+id,
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
-        const { data } = await axios({
-            method: 'get',
-            url: 'pass',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
         Swal.fire(
             'Deleted!',
             'Your file has been deleted.',
@@ -172,7 +152,7 @@ export const deletePass = (id) => async dispatch => {
         )
         dispatch ({
             type: 'GET_PASS',
-            data
+            data: []
         })
     } catch (error) {
         Swal.fire({

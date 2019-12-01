@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { is_Login } from '../../store/actions/users'
 import {
     Link,
-    Route,
     Switch,
-    withRouter,
     useHistory
   } from "react-router-dom";
 import Navbar from '../../components/Navbar/Navbar'
@@ -18,7 +16,6 @@ import Note from '../Note/Note'
 export default function Home() {
     const dispatch = useDispatch()
     const history = useHistory()
-    const { isLogin } = useSelector(state => state.users)
 
     useEffect(()=>{
         if(localStorage.getItem('token')){

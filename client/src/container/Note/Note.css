@@ -1,0 +1,11 @@
+.add-note{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #f8f419;
+    cursor: pointer;
+    position: fixed;
+    top: 85%;
+    left: 90%;
+    margin-right: 100px;
+}

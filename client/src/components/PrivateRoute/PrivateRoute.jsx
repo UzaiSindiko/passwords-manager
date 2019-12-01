@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {
     Route,
     Redirect,
     useLocation
   } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
 
 export default function PrivateRoute(props) {
     const location = useLocation()

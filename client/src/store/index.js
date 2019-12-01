@@ -86,7 +86,35 @@ function contact(state = initContact, action){
     }
 }
 
-const rootReducer = combineReducers({ users, pass, contact })
+
+const initNote = {
+    notes: [],
+    OneNote: {}
+}
+
+function note(state = initNote, action){
+    switch (action.type) {
+        case 'GET_NOTE':
+            return {
+                ...state,
+                notes: action.data
+            }
+        case 'GET_ONE_NOTE':
+            return {
+                ...state,
+                OneNote: action.data
+            }
+        case 'DELETE_ONE_NOTE':
+            return {
+                ...state,
+                OneNote: {}
+            }
+        default:
+            return state
+    }
+}
+
+const rootReducer = combineReducers({ users, pass, contact, note })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 

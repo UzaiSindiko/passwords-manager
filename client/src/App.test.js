@@ -7,3 +7,26 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+
+describe('window.location', () => {
+  const { location } = window;
+
+  beforeAll(() => {
+    delete window.location;
+    window.location = { reload: jest.fn() };
+  });
+
+  afterAll(() => {
+    window.location = location;
+  });
+
+  it('mocks `reload`', () => {
+    expect(jest.isMockFunction(window.location.reload)).toBe(true);
+  });
+
+  it('calls `reload`', () => {
+    window.location.reload();
+    expect(window.location.reload).toHaveBeenCalled();
+  });
+});

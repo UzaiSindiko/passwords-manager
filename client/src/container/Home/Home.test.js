@@ -9,7 +9,7 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 
-jest.mock('../store/actions/users')
+
 
 describe ('renders Home', () =>{
   test('renders without crashing', ()=>{

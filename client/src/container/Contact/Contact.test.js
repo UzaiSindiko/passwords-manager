@@ -10,10 +10,6 @@ import {
 
 jest.mock('../../store/actions/contact')
 
-test('use jsdom in this test file', () => {
-    const element = document.createElement('div');
-    expect(element).not.toBeNull();
-  });
 
 describe ('check contain text in Contact page', () =>{
     test('Contact page have intented text', ()=>{

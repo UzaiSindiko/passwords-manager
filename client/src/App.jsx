@@ -28,7 +28,7 @@ function App() {
         <Switch>
 
             <Route path="/login">
-              <Login />
+             { !localStorage.getItem('token') ? <Login /> : <Redirect to="/" />}
             </Route>
 
             <PrivateRoute path="/">

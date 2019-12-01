@@ -13,8 +13,9 @@ class NoteController {
     }
 
     static update(req, res, next){
+        const { id } = req.params
         const { note, name } = req.body
-        Note.create({ note, name })
+        Note.findByIdAndUpdate(id, { note, name })
             .then(note => {
                 res.status(200).json(note)
             })
@@ -43,6 +44,30 @@ class NoteController {
         Note.findOneAndDelete(id)
             .then(notes =>{
                 res.status(200).json(notes)
+            })
+            .catch(next)
+    }
+
+    static search(req, res, next) {
+        const{ q } = req.query
+        const userId = req.decode.id    
+            Note.find({
+                $or: [   
+                    {
+                        name: {
+                            $regex: `${q}`, $options: 'i'
+                        }
+                    },
+                    {
+                        note: {
+                            $regex: `${q}`, $options: 'i'
+                        }
+                    }
+                ],
+            userId
+            })
+            .then(contacts => {
+                res.status(200).json(contacts)
             })
             .catch(next)
     }

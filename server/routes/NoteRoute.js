@@ -2,6 +2,7 @@ const router = require('express').Router()
 const NoteController = require('../controllers/NoteController')
 const { authorizationNote } = require('../middleware/auth')
 
+router.get('/search', NoteController.search)
 router.post('/', NoteController.create)
 router.patch('/:id', authorizationNote, NoteController.update)
 router.get('/', NoteController.find)

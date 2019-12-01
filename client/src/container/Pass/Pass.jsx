@@ -158,11 +158,11 @@ export default function Pass() {
                 }
             </div>
 
-    {isForm && (<div data-testid="pass-form" className="form-add-con d-flex align-items-center justify-content-center">
+    {isForm && (<div id="pass-form" data-testid="pass-form" className="animated zoomIn fast  form-add-con d-flex align-items-center justify-content-center">
                 <div className="from-add">
                 <span onClick={() => { closeFrom()} } className="close">x</span>
                     <h1 data-testid="title-form-pass" className="text-center">Add New Password</h1>
-                    <form data-testid="crate-pass-btn"  onSubmit={(e) => {
+                    <form data-testid="submit-pass-btn"  onSubmit={(e) => {
                         e.preventDefault()
                         setIsForm(false)
                         handleSubmit()
