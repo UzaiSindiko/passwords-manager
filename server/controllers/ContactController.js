@@ -98,8 +98,6 @@ class ContactController {
     static search(req, res, next) {
 
         const userId = req.decode.id
-        const { q } = req.query  
-        console.log(q, '<<<<<<<<<<<<<<<<<');
             Contact.find({
                 $or: [   
                     {
