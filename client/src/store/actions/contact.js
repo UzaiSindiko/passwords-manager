@@ -1,28 +1,51 @@
 import axios from '../../apis/axios'
 import Swal from 'sweetalert2'
 
-export const postPass = ({ name, URL, username, password, note }) => async dispatch => {
+export const postContact = ({ 
+            Title,
+            firstName,
+            middleName,
+            lastName,
+            username,
+            gender,
+            company,
+            address,
+            phone,
+            note  
+        }) => async dispatch => {
+
     Swal.showLoading()
     try {
 
         await axios({
             method: 'post',
-            url: '/pass',
+            url: '/contacts',
             headers: {
                 token : localStorage.getItem('token')
             },
-            data: { name, URL, username, password, note }
+            data: { 
+            Title,
+            firstName,
+            middleName,
+            lastName,
+            username,
+            gender,
+            company,
+            address,
+            phone,
+            note  
+            }
         })
         const { data } = await axios({
             method: 'get',
-            url: 'pass',
+            url: '/contacts',
             headers: {
                 token : localStorage.getItem('token')
             }
         })
         Swal.close()
         dispatch ({
-            type: 'GET_PASS',
+            type: 'GET_CONTACT',
             data
         })
         
@@ -35,20 +58,19 @@ export const postPass = ({ name, URL, username, password, note }) => async dispa
     }
 }
 
-
-export const searchPass = (q) => async dispatch => {
+export const getContact = () => async dispatch => {
     Swal.showLoading()
     try {
         const { data } = await axios({
             method: 'get',
-            url: '/pass/search?q='+q,
+            url: '/contacts',
             headers: {
                 token : localStorage.getItem('token')
             }
         })
         Swal.close()
         dispatch ({
-            type: 'GET_PASS',
+            type: 'GET_CONTACT',
             data
         })
     } catch (error) {
@@ -60,19 +82,20 @@ export const searchPass = (q) => async dispatch => {
     }
 }
 
-export const getPass = () => async dispatch => {
+
+export const searchContact = (q) => async dispatch => {
     Swal.showLoading()
     try {
         const { data } = await axios({
             method: 'get',
-            url: '/pass',
+            url: '/contacts/search?q=' + q,
             headers: {
                 token : localStorage.getItem('token')
             }
         })
         Swal.close()
         dispatch ({
-            type: 'GET_PASS',
+            type: 'GET_CONTACT',
             data
         })
     } catch (error) {
@@ -84,19 +107,19 @@ export const getPass = () => async dispatch => {
     }
 }
 
-export const getOnePass = (id) => async dispatch => {
+export const getOneContact = (id) => async dispatch => {
     Swal.showLoading()
     try {
         const { data } = await axios({
             method: 'get',
-            url: '/pass/'+id,
+            url: '/contacts/'+id,
             headers: {
                 token : localStorage.getItem('token')
             }
         })
         Swal.close()
        return dispatch ({
-            type: 'GET_ONE_PASS',
+            type: 'GET_ONE_CONTACT',
             data
         })
     } catch (error) {
@@ -108,28 +131,51 @@ export const getOnePass = (id) => async dispatch => {
     }
 }
 
-export const updatePass = ({ id, name, URL, username, password, note }) => async dispatch => {
+export const updateContact = ({ 
+            id, 
+            Title,
+            firstName,
+            middleName,
+            lastName,
+            username,
+            gender,
+            company,
+            address,
+            phone,
+            note  
+        }) => async dispatch => {
     Swal.showLoading()
     try {
 
         await axios({
             method: 'patch',
-            url: '/pass/'+id,
+            url: '/contacts/'+id,
             headers: {
                 token : localStorage.getItem('token')
             },
-            data: { name, URL, username, password, note }
+            data: { 
+            Title,
+            firstName,
+            middleName,
+            lastName,
+            username,
+            gender,
+            company,
+            address,
+            phone,
+            note  
+            }
         })
         const { data } = await axios({
             method: 'get',
-            url: 'pass',
+            url: '/contacts',
             headers: {
                 token : localStorage.getItem('token')
             }
         })
         Swal.close()
         dispatch ({
-            type: 'GET_PASS',
+            type: 'GET_CONTACT',
             data
         })
         
@@ -142,19 +188,19 @@ export const updatePass = ({ id, name, URL, username, password, note }) => async
     }
 }
 
-export const deletePass = (id) => async dispatch => {
+export const deleteContact = (id) => async dispatch => {
     Swal.showLoading()
     try {
         await axios({
             method: 'delete',
-            url: '/pass/'+id,
+            url: '/contacts/'+id,
             headers: {
                 token : localStorage.getItem('token')
             }
         })
         const { data } = await axios({
             method: 'get',
-            url: 'pass',
+            url: 'contacts',
             headers: {
                 token : localStorage.getItem('token')
             }
@@ -165,7 +211,7 @@ export const deletePass = (id) => async dispatch => {
             'success'
         )
         dispatch ({
-            type: 'GET_PASS',
+            type: 'GET_CONTACT',
             data
         })
     } catch (error) {
@@ -177,8 +223,8 @@ export const deletePass = (id) => async dispatch => {
     }
 }
 
-export const deleteOnePass = () => {
+export const deleteOneContact = () => {
     return {
-        type: 'DELETE_ONE_PASS'
+        type: 'DELETE_ONE_CONTACT'
     }
 }

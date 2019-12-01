@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './Pass.css'
 import Card from '../../components/Card/Card'
-import { postPass, getPass, getOnePass, updatePass, deletePass } from '../../store/actions/Pass'
+import { postPass, getPass, getOnePass, updatePass, deletePass, searchPass, deleteOnePass } from '../../store/actions/Pass'
+import Swal from 'sweetalert2'
 
 export default function Pass() {
     
@@ -15,6 +16,8 @@ export default function Pass() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [note, setNote] = useState('')
+    const [q, setQ] = useState('')
+
     const [isForm, setIsForm] = useState(false)
     const [isEdit, setIsEdit] = useState(false)
     
@@ -39,6 +42,16 @@ export default function Pass() {
         setPassword('')
         setNote('')
     }
+
+    function closeFrom(){
+        setIsForm(false)
+        dispatch(deleteOnePass())
+        setName('')
+        setURL('')
+        setUsername('')
+        setPassword('')
+        setNote('')
+    }
     
     useEffect(() => {
         dispatch(getPass())
@@ -50,7 +63,7 @@ export default function Pass() {
         setUsername(OnePassword.username)
         setPassword(OnePassword.password)
         setNote(OnePassword.note)
-        if(OnePassword.name){
+        if(OnePassword._id){
             setIsForm(true)
             setIsEdit(true)
         }
@@ -61,8 +74,24 @@ export default function Pass() {
     }
     
     function del(id){
-        dispatch(deletePass(id))
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.value) {
+            dispatch(deletePass(id))
+            }
+          })
     }
+
+    useEffect(()=> {
+        dispatch(searchPass(q))
+    }, [q])
 
     useEffect(() => {
         
@@ -113,11 +142,14 @@ export default function Pass() {
     return (
         <div>
             <div>
-                <span>{ JSON.stringify(OnePassword.password) }</span>
+                <form className="d-flex">
+                    <input onChange={(e) => { setQ( e.target.value ) }  }  value={ q } className="p-1" type="search" placeholder="Search....."/>
+                    <button className="ml-2 btn btn-info" >submit</button>
+                </form>
                 <h1>Password</h1>
                 <span>A password, sometimes called a passcode, is a memorized secret used to confirm the identity of a user.</span>
             </div>
-            <div onClick={() => setIsForm(true) }  className="animated bounce fast add d-flex align-items-center justify-content-center">
+            <div onClick={() => setIsForm(true) }  className="animated bounce fast add-pass d-flex align-items-center justify-content-center">
                 <i className="fas fa-pen"></i>
             </div>
             <div className="w-100 d-flex mt-5 flex-wrap">
@@ -128,7 +160,7 @@ export default function Pass() {
 
     {isForm && (<div className="form-add-con d-flex align-items-center justify-content-center">
                 <div className="from-add">
-                <span onClick={() => { setIsForm(false)} } className="close">x</span>
+                <span onClick={() => { closeFrom()} } className="close">x</span>
                     <h1 className="text-center">Add New Password</h1>
                     <form  onSubmit={(e) => {
                         e.preventDefault()

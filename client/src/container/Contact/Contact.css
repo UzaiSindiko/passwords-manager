@@ -1,0 +1,19 @@
+.add-contact {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #7ff362;
+    cursor: pointer;
+    position: fixed;
+    top: 85%;
+    left: 90%;
+}
+
+.add-contact i{
+    font-size: 20px;
+    color: white;
+}
+
+.mymargin{
+    margin-top: 600px;
+}

@@ -50,6 +50,36 @@ class PassController {
             .catch(next)
     }
 
+    static search(req, res, next) {
+        const userId = req.decode.id
+        const { q } = req.query       
+            Pass.find({
+                $or: [   
+                    {
+                        name: {
+                            $regex: `${q}`, $options: 'i'
+                        }
+                    },
+                    {
+                        URL: {
+                            $regex: `${q}`, $options: 'i'
+                        }
+                    },
+                    {
+                        username: {
+                            $regex: `${q}`,
+                            $options: 'i'
+                        }
+                    }
+                ],
+            userId
+            })
+            .then(pass => {
+                res.status(200).json(pass)
+            })
+            .catch(next)
+    }
+
 }
 
 module.exports = PassController

@@ -28,7 +28,7 @@ class ContactController {
             company,
             address,
             phone,
-            note 
+            note
         })
         .then(contact => {
             res.status(201).json(contact)
@@ -91,6 +91,32 @@ class ContactController {
         Contact.findByIdAndDelete(id)
             .then(contact =>{
                 res.status(200).json(contact)
+            })
+            .catch(next)
+    }
+
+    static search(req, res, next) {
+
+        const userId = req.decode.id
+        const { q } = req.query  
+        console.log(q, '<<<<<<<<<<<<<<<<<');
+            Contact.find({
+                $or: [   
+                    {
+                        Title: {
+                            $regex: `${q}`, $options: 'i'
+                        }
+                    },
+                    {
+                        firstName: {
+                            $regex: `${q}`, $options: 'i'
+                        }
+                    }
+                ],
+            userId
+            })
+            .then(contacts => {
+                res.status(200).json(contacts)
             })
             .catch(next)
     }

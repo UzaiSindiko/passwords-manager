@@ -39,7 +39,13 @@ export const register = ({ email, password, history, location }) => async dispat
                 password
             }
         })
-        Swal.close()
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Welcome to KeyPass',
+            showConfirmButton: false,
+            timer: 1500
+        })
         dispatch ({
             type: 'LOGIN',
             token : data.token

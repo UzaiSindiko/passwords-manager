@@ -1,4 +1,4 @@
-.add {
+.add-pass {
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -9,7 +9,7 @@
     left: 90%;
 }
 
-.add i{
+.add-pass i{
     font-size: 20px;
     color: white;
 }

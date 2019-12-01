@@ -45,8 +45,8 @@ export default function Login() {
                     }}
                     className="mt-4 d-flex flex-column align-items-center justify-content-center" >
     
-                        <input value={ email } onChange={ (e) => setEmail( e.target.value ) } type="text" placeholder="Enter Email"/>
-                        <input value={ password } onChange={ (e) => setPassword( e.target.value ) } type="password" placeholder="Enter Master Password"/>
+                        <input data-testid="input-email" value={ email } onChange={ (e) => setEmail( e.target.value ) } type="text" placeholder="Enter Email"/>
+                        <input data-testid="input-pass" value={ password } onChange={ (e) => setPassword( e.target.value ) } type="password" placeholder="Enter Master Password"/>
                         <button data-testid="login-btn" className="btn btn-danger rounded-pill w-75" >Login</button>
                     </form>
                 </div>
@@ -57,8 +57,8 @@ export default function Login() {
         <div className="login-con d-flex justify-content-center align-items-center">
             <div className="animated flipInY form-con">
                 <div className="d-flex align-items-center justify-content-between">
-                    <h1 data-testid="title-login" >Register</h1>
-                    <span className="to" onClick={() => setLoginForm(true) }>Or Login</span>
+                    <h1 data-testid="title-register" >Register</h1>
+                    <span className="to"  data-testid="to-login" onClick={() => setLoginForm(true) }>Or Login</span>
                 </div>
                 <form  onSubmit={ (e) =>{
                     e.preventDefault()
@@ -66,11 +66,11 @@ export default function Login() {
                 }}
                 className="mt-4 d-flex flex-column align-items-center justify-content-center" >
 
-                    <input value={ email } onChange={ (e) => setEmail( e.target.value ) } type="text" placeholder="Enter Email"/>
-                    <input value={ password } onChange={ (e) => setPassword( e.target.value ) } type="password" placeholder="Enter Master Password"/>
+                    <input data-testid="input-email" value={ email } onChange={ (e) => setEmail( e.target.value ) } type="text" placeholder="Enter Email"/>
+                    <input data-testid="input-pass" value={ password } onChange={ (e) => setPassword( e.target.value ) } type="password" placeholder="Enter Master Password"/>
                     <input value={ confirmPass } onChange={ (e) => setConfirmPass( e.target.value ) } type="password" placeholder="Confirm Master Password"/>
                     <input type="text" placeholder="Reminder (Optional)"/>
-                    <button data-testid="login-btn" className="btn btn-danger rounded-pill w-75" >Login</button>
+                    <button data-testid="register-btn" className="btn btn-danger rounded-pill w-75" >Login</button>
                 </form>
             </div>
         </div>
