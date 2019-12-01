@@ -1,42 +1,35 @@
-import axios from '../../apis/axios'
 import Swal from 'sweetalert2'
 
 export const postPass = ({ name, URL, username, password, note }) => async dispatch => {
     Swal.showLoading()
-    try {
-
-        await axios({
-            method: 'post',
-            url: '/pass',
-            headers: {
-                token : localStorage.getItem('token')
-            },
-            data: { name, URL, username, password, note }
-        })
-        const { data } = await axios({
-            method: 'get',
-            url: 'pass',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
+    if( name, URL, username, password, note && URL.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)) {
         Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: 'Success Add Password',
             showConfirmButton: false,
-            timer: 15000
+            timer: 150000
         })
         dispatch ({
             type: 'GET_PASS',
-            data
+            data: [
+                {
+                    "_id": "5de29aabcb934623be02c293",
+                    "userId": "5ddf8b8cad29641b3b4c8818",
+                    "name": "Facebook@",
+                    "URL": "www.facebok.com",
+                    "username": "uzai.sindiko@gmail.com",
+                    "password": "uzai sindiko",
+                    "note": "uzai1",
+                    "__v": 0
+                }
+            ]
         })
         
-    } catch (error) {
+    } else {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.message,
+            title: 'Oops...'
         })
     }
 }
@@ -44,24 +37,27 @@ export const postPass = ({ name, URL, username, password, note }) => async dispa
 
 export const searchPass = (q) => async dispatch => {
     Swal.showLoading()
-    try {
-        const { data } = await axios({
-            method: 'get',
-            url: '/pass/search?q='+q,
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
+    if(q == '@') {
         Swal.close()
         dispatch ({
             type: 'GET_PASS',
-            data
+            data: [
+                {
+                    "_id": "5de29aabcb934623be02c293",
+                    "userId": "5ddf8b8cad29641b3b4c8818",
+                    "name": "Facebook@",
+                    "URL": "www.facebok.com",
+                    "username": "uzai.sindiko@gmail.com",
+                    "password": "uzai sindiko",
+                    "note": "uzai1",
+                    "__v": 0
+                }
+            ]
         })
-    } catch (error) {
+    } else {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.message,
+            title: 'Oops...'
         })
     }
 }
@@ -69,23 +65,26 @@ export const searchPass = (q) => async dispatch => {
 export const getPass = () => async dispatch => {
     Swal.showLoading()
     try {
-        const { data } = await axios({
-            method: 'get',
-            url: '/pass',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
         Swal.close()
         dispatch ({
             type: 'GET_PASS',
-            data
+            data: [
+                {
+                    "_id": "5de29aabcb934623be02c293",
+                    "userId": "5ddf8b8cad29641b3b4c8818",
+                    "name": "Facebook@",
+                    "URL": "www.facebok.com",
+                    "username": "uzai.sindiko@gmail.com",
+                    "password": "uzai sindiko",
+                    "note": "uzai1",
+                    "__v": 0
+                }
+            ]
         })
     } catch (error) {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.message,
+            title: 'Oops...'
         })
     }
 }
@@ -93,31 +92,33 @@ export const getPass = () => async dispatch => {
 export const getOnePass = (id) => async dispatch => {
     Swal.showLoading()
     try {
-        const { data } = await axios({
-            method: 'get',
-            url: '/pass/'+id,
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
         Swal.close()
        return dispatch ({
             type: 'GET_ONE_PASS',
-            data
+            data: [
+                {
+                    "_id": "5de29aabcb934623be02c293",
+                    "userId": "5ddf8b8cad29641b3b4c8818",
+                    "name": "Facebook@",
+                    "URL": "www.facebok.com",
+                    "username": "uzai.sindiko@gmail.com",
+                    "password": "uzai sindiko",
+                    "note": "uzai1",
+                    "__v": 0
+                }
+            ]
         })
     } catch (error) {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.message,
+            title: 'Oops...'
         })
     }
 }
 
 export const updatePass = ({ id, name, URL, username, password, note }) => async dispatch => {
     Swal.showLoading()
-    try {
-
+    if( id, name, URL, username, password, note && URL.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/) ) {    
         await axios({
             method: 'patch',
             url: '/pass/'+id,
@@ -139,11 +140,10 @@ export const updatePass = ({ id, name, URL, username, password, note }) => async
             data
         })
         
-    } catch (error) {
+    } else {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.message,
+            title: 'Oops...'
         })
     }
 }
@@ -177,8 +177,7 @@ export const deletePass = (id) => async dispatch => {
     } catch (error) {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.message,
+            title: 'Oops...'
         })
     }
 }

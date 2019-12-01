@@ -140,17 +140,16 @@ export default function Contact() {
         <div>
             <div>
                 <form className="d-flex">
-                    <input onChange={(e) => { setQ( e.target.value ) }  }  value={ q } className="p-1" type="search" placeholder="Search....."/>
+                    <input data-testid="contact-search-bar" onChange={(e) => { setQ( e.target.value ) }  }  value={ q } className="p-1" type="search" placeholder="Search....."/>
                     <button className="ml-2 btn btn-info" >submit</button>
                 </form>
-                <h1>Contact</h1>
+                <h1 data-testid="title-contact" >Contact</h1>
                 <span>Access the contacts in your KeyPass Account from any device. Keep your contacts organized and up to date</span>
             </div>
-            <div onClick={() => setIsForm(true) }  className="animated bounce fast add-contact d-flex align-items-center justify-content-center">
+            <div  data-testid="add-new-contact" onClick={() => setIsForm(true) }  className="animated bounce fast add-contact d-flex align-items-center justify-content-center">
                 <i className="fas fa-pen"></i>
             </div>
             <div className="w-100 d-flex mt-5 flex-wrap">
-                {/* <span>{ JSON.stringify(contacts) }</span> */}
                 {
                     contacts.map(v => <Card getOne={ getOne } del={ del } key={ v._id } name={v.firstName} username={v.phone} passId={ v._id } URL="contactsplus.com" />)
                 }
@@ -159,22 +158,22 @@ export default function Contact() {
             {isForm && (<div className="form-add-con d-flex align-items-center justify-content-center">
                 <div className="from-add mymargin">
                 <span onClick={() => { closeFrom()} } className="close">x</span>
-                    <h1 className="text-center">Add New Contact</h1>
-                    <form  onSubmit={(e) => {
+                    <h1 data-testid="title-form-contact" className="text-center">Add New Contact</h1>
+                    <form data-testid="create-contact-btn" onSubmit={(e) => {
                         e.preventDefault()
                         setIsForm(false)
                         handleSubmit()
                     }} className="d-flex flex-column align-items-center">
-                        <input type="text" onChange={(e) => { setTitle( e.target.value ) }  } value={ Title } placeholder="Enter Title"/>
-                        <input type="text" onChange={(e) => { setFirstName( e.target.value ) }  } value={ firstName } placeholder="Enter First Name"/>
-                        <input type="text" onChange={(e) => { setMiddleName( e.target.value ) }  } value={ middleName } placeholder="Enter MiddleName"/>
-                        <input type="text" onChange={(e) => { setLastName( e.target.value ) }  } value={ lastName } placeholder="Enter LastName"/>
-                        <input type="text" onChange={(e) => { setUsername( e.target.value ) }  } value={ username } placeholder="Enter Username"/>
-                        <input type="text" onChange={(e) => { setGender( e.target.value ) }  } value={ gender } placeholder="Enter Gender"/>
-                        <input type="text" onChange={(e) => { setCompany( e.target.value ) }  } value={ company } placeholder="Enter Company"/>
-                        <textarea onChange={(e) => { setAddress( e.target.value ) }  } value={ address } cols="30" rows="5" placeholder="Enter Address"></textarea>
-                        <input type="text" onChange={(e) => { setPhone( e.target.value ) }  } value={ phone } placeholder="Enter Phone"/>
-                        <textarea onChange={(e) => { setNote( e.target.value ) }  } value={ note } cols="30" rows="5" placeholder="Enter Note"></textarea>
+                        <input data-testid="input-title" type="text" onChange={(e) => { setTitle( e.target.value ) }  } value={ Title } placeholder="Enter Title"/>
+                        <input data-testid="input-firstname" type="text" onChange={(e) => { setFirstName( e.target.value ) }  } value={ firstName } placeholder="Enter First Name"/>
+                        <input data-testid="input-middlename" type="text" onChange={(e) => { setMiddleName( e.target.value ) }  } value={ middleName } placeholder="Enter MiddleName"/>
+                        <input data-testid="input-lastname" type="text" onChange={(e) => { setLastName( e.target.value ) }  } value={ lastName } placeholder="Enter LastName"/>
+                        <input data-testid="input-username" type="text" onChange={(e) => { setUsername( e.target.value ) }  } value={ username } placeholder="Enter Username"/>
+                        <input data-testid="input-gender" type="text" onChange={(e) => { setGender( e.target.value ) }  } value={ gender } placeholder="Enter Gender"/>
+                        <input data-testid="input-company" type="text" onChange={(e) => { setCompany( e.target.value ) }  } value={ company } placeholder="Enter Company"/>
+                        <textarea  data-testid="input-address" onChange={(e) => { setAddress( e.target.value ) }  } value={ address } cols="30" rows="5" placeholder="Enter Address"></textarea>
+                        <input data-testid="input-phone" type="text" onChange={(e) => { setPhone( e.target.value ) }  } value={ phone } placeholder="Enter Phone"/>
+                        <textarea data-testid="input-note"  onChange={(e) => { setNote( e.target.value ) }  } value={ note } cols="30" rows="5" placeholder="Enter Note"></textarea>
                         {
                             isEdit ? <button className="mt-3 btn btn-success w-25">Edit</button> : <button className="mt-3 btn btn-primary w-25">Add</button>
                         }

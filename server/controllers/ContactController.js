@@ -96,8 +96,8 @@ class ContactController {
     }
 
     static search(req, res, next) {
-
-        const userId = req.decode.id
+        const{ q } = req.query
+        const userId = req.decode.id    
             Contact.find({
                 $or: [   
                     {

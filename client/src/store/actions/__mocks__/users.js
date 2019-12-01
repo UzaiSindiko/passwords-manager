@@ -55,6 +55,13 @@ export const is_Login = () => {
 }
 
 export const logout = () => {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Success Logout',
+        showConfirmButton: false,
+        timer: 15000
+    })
     return {
         type: 'LOGOUT'
     }

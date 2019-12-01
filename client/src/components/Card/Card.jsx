@@ -15,7 +15,7 @@ export default function Card(props) {
 
 
     return (
-        <div className="pass-card">
+        <div  data-testid="card" className="pass-card">
             <div className="d-flex">
                 <div className="icon">
                     <a href={url} target="_blank" > <img src={`//logo.clearbit.com/${props.URL}?size=100`} alt=""/> </a>
@@ -24,8 +24,8 @@ export default function Card(props) {
                     <h4>{props.name}</h4>
                     <span>{ props.username }</span>
                     <div className="actions d-flex align-items-center justify-content-end">
-                        <i onClick={(e) => {  props.getOne(props.passId) } } className="fas fa-pen"></i>
-                        <i onClick={ (e) => {  props.del(props.passId) }  } className="fas fa-trash pl-3"></i>
+                        <i data-testid="card-update-btn"  onClick={(e) => {  props.getOne(props.passId) } } className="fas fa-pen"></i>
+                        <i data-testid="card-delete-btn"  onClick={ (e) => {  props.del(props.passId) }  } className="fas fa-trash pl-3"></i>
                     </div>
                 </div>
             </div>

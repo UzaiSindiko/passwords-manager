@@ -1,5 +1,6 @@
 .home {
     font-family: 'Sulphur Point', sans-serif;
+    min-height: 100vh;
 }
 
 .menu {

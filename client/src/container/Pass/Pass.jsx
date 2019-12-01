@@ -143,13 +143,13 @@ export default function Pass() {
         <div>
             <div>
                 <form className="d-flex">
-                    <input onChange={(e) => { setQ( e.target.value ) }  }  value={ q } className="p-1" type="search" placeholder="Search....."/>
-                    <button className="ml-2 btn btn-info" >submit</button>
+                    <input  data-testid="pass-search-bar" onChange={(e) => { setQ( e.target.value ) }  }  value={ q } className="p-1" type="search" placeholder="Search....."/>
+                    <button  className="ml-2 btn btn-info" >submit</button>
                 </form>
-                <h1>Password</h1>
+                <h1 data-testid="title-password" >Password</h1>
                 <span>A password, sometimes called a passcode, is a memorized secret used to confirm the identity of a user.</span>
             </div>
-            <div onClick={() => setIsForm(true) }  className="animated bounce fast add-pass d-flex align-items-center justify-content-center">
+            <div  data-testid="create-pass-btn" onClick={() => setIsForm(true) }  className="animated bounce fast add-pass d-flex align-items-center justify-content-center">
                 <i className="fas fa-pen"></i>
             </div>
             <div className="w-100 d-flex mt-5 flex-wrap">
@@ -158,30 +158,29 @@ export default function Pass() {
                 }
             </div>
 
-    {isForm && (<div className="form-add-con d-flex align-items-center justify-content-center">
+    {isForm && (<div data-testid="pass-form" className="form-add-con d-flex align-items-center justify-content-center">
                 <div className="from-add">
                 <span onClick={() => { closeFrom()} } className="close">x</span>
-                    <h1 className="text-center">Add New Password</h1>
-                    <form  onSubmit={(e) => {
+                    <h1 data-testid="title-form-pass" className="text-center">Add New Password</h1>
+                    <form data-testid="crate-pass-btn"  onSubmit={(e) => {
                         e.preventDefault()
                         setIsForm(false)
                         handleSubmit()
                     }} className="d-flex flex-column align-items-center">
-                        <input type="text" onChange={(e) => { setName( e.target.value ) }  } value={ name } placeholder="Enter Name"/>
-                        <input type="text" onChange={(e) => { setURL( e.target.value ) }  } value={ URL } placeholder="Enter URL"/>
-                        <p className="w-75  text-danger" style={{ display }} ><i className="fas fa-stop"></i> Not valid URL "please use valid url" </p>
-                        <input type="text" onChange={(e) => { setUsername( e.target.value ) }  } value={ username } placeholder="Enter username / email"/>
-                        <input type="text" onChange={(e) => { setPassword( e.target.value ) }  } value={ password } placeholder="Enter password"/>
+                        <input data-testid="input-name" type="text" onChange={(e) => { setName( e.target.value ) }  } value={ name } placeholder="Enter Name"/>
+                        <input data-testid="input-URL"  type="text" onChange={(e) => { setURL( e.target.value ) }  } value={ URL } placeholder="Enter URL"/>
+                        <p data-testid="check-URL" className="w-75  text-danger" style={{ display }} ><i className="fas fa-stop"></i> Not valid URL "please use valid url" </p>
+                        <input data-testid="input-username" type="text" onChange={(e) => { setUsername( e.target.value ) }  } value={ username } placeholder="Enter username / email"/>
+                        <input data-testid="input-password" type="text" onChange={(e) => { setPassword( e.target.value ) }  } value={ password } placeholder="Enter password"/>
                         <div className="w-75">
-                        
                             <p>Our minimum requirements:</p>
-                            <p style={{ color: color12 }} ><i className="fas fa-stop"></i> At least 12 characters long</p>
-                            <p style={{ color: colorU }} ><i className="fas fa-stop"></i> At least 1 uppercase letter </p>
-                            <p style={{ color: colorL }} ><i className="fas fa-stop"></i> At least 1 lowercase letter </p>
-                            <p style={{ color: colorUsername }} ><i className="fas fa-stop"></i> Not your email </p>
-                            <p style={{ color: colorS }} ><i className="fas fa-stop"></i> At least 1 special character (!@#$%^) </p>
+                            <p data-testid="check-color12" style={{ color: color12 }} ><i className="fas fa-stop"></i> At least 12 characters long</p>
+                            <p data-testid="check-colorU" style={{ color: colorU }} ><i className="fas fa-stop"></i> At least 1 uppercase letter </p>
+                            <p data-testid="check-colorL" style={{ color: colorL }} ><i className="fas fa-stop"></i> At least 1 lowercase letter </p>
+                            <p data-testid="check-colorUsername" style={{ color: colorUsername }} ><i className="fas fa-stop"></i> Not your email </p>
+                            <p data-testid="check-colorS" style={{ color: colorS }} ><i className="fas fa-stop"></i> At least 1 special character (!@#$%^) </p>
                         </div>
-                        <textarea onChange={(e) => { setNote( e.target.value ) }  } value={ note } cols="30" rows="5" placeholder="Enter Note"></textarea>
+                        <textarea data-testid="input-note"  onChange={(e) => { setNote( e.target.value ) }  } value={ note } cols="30" rows="5" placeholder="Enter Note"></textarea>
                         {
                             isEdit ? <button className="mt-3 btn btn-success w-25">Edit</button> : <button className="mt-3 btn btn-primary w-25">Add</button>
                         }

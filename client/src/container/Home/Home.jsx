@@ -5,7 +5,8 @@ import {
     Link,
     Route,
     Switch,
-    withRouter
+    withRouter,
+    useHistory
   } from "react-router-dom";
 import Navbar from '../../components/Navbar/Navbar'
 import './Home.css'
@@ -16,11 +17,13 @@ import Note from '../Note/Note'
 
 export default function Home() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const { isLogin } = useSelector(state => state.users)
 
     useEffect(()=>{
         if(localStorage.getItem('token')){
             dispatch(is_Login())
+            history.push('/pass')
         }
     }, []) 
 

@@ -16,7 +16,7 @@ export default function Navbar() {
                 <h3 className="ml-2 text-white">KeyPass</h3>
             </div>
             <Link to="/login">
-                 <i onClick={ (e) => { dispatch(logout())}} className="logout fas fa-sign-out-alt"></i>
+                 <i data-testid="logout-btn" onClick={ (e) => { dispatch(logout())}} className="logout fas fa-sign-out-alt"></i>
             </Link>
         </nav>
     )

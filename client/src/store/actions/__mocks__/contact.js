@@ -1,4 +1,3 @@
-import axios from '../../apis/axios'
 import Swal from 'sweetalert2'
 
 export const postContact = ({ 
@@ -15,34 +14,16 @@ export const postContact = ({
         }) => async dispatch => {
 
     Swal.showLoading()
-    try {
-
-        await axios({
-            method: 'post',
-            url: '/contacts',
-            headers: {
-                token : localStorage.getItem('token')
-            },
-            data: { 
-            Title,
-            firstName,
-            middleName,
-            lastName,
-            username,
-            gender,
-            company,
-            address,
-            phone,
-            note  
-            }
-        })
-        const { data } = await axios({
-            method: 'get',
-            url: '/contacts',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
+    if(Title,
+        firstName,
+        middleName,
+        lastName,
+        username,
+        gender,
+        company,
+        address,
+        phone,
+        note  ) {
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -52,14 +33,27 @@ export const postContact = ({
         })
         dispatch ({
             type: 'GET_CONTACT',
-            data
+            data:  [{
+                "_id": "5de3652c2b2eba589cc02cdc",
+                "userId": "5ddf8b8cad29641b3b4c8818",
+                "Title": "satu",
+                "firstName": "satu",
+                "middleName": "satu",
+                "lastName": "satu",
+                "username": "satu",
+                "gender": "male",
+                "company": "1995",
+                "address": "Jalan Teupineung No 33 Merduati Banda Aceh",
+                "phone": "+62085261400506",
+                "note": "sdfasdfaafdafasd",
+                "__v": 0
+            }]
         })
         
-    } catch (error) {
+    } else {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: error.response.data.message,
         })
     }
 }
@@ -67,23 +61,31 @@ export const postContact = ({
 export const getContact = () => async dispatch => {
     Swal.showLoading()
     try {
-        const { data } = await axios({
-            method: 'get',
-            url: '/contacts',
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
         Swal.close()
         dispatch ({
             type: 'GET_CONTACT',
-            data
+            data:  [
+                {
+                    "_id": "5de3652c2b2eba589cc02cdc",
+                    "userId": "5ddf8b8cad29641b3b4c8818",
+                    "Title": "satu",
+                    "firstName": "satu",
+                    "middleName": "satu",
+                    "lastName": "satu",
+                    "username": "satu",
+                    "gender": "male",
+                    "company": "1995",
+                    "address": "Jalan Teupineung No 33 Merduati Banda Aceh",
+                    "phone": "+62085261400506",
+                    "note": "sdfasdfaafdafasd",
+                    "__v": 0
+                }
+        ],
         })
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: error.response.data.message,
         })
     }
 }
@@ -92,23 +94,29 @@ export const getContact = () => async dispatch => {
 export const searchContact = (q) => async dispatch => {
     Swal.showLoading()
     try {
-        const { data } = await axios({
-            method: 'get',
-            url: '/contacts/search?q=' + q,
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
         Swal.close()
         dispatch ({
             type: 'GET_CONTACT',
-            data
+            data:  [{
+                "_id": "5de3652c2b2eba589cc02cdc",
+                "userId": "5ddf8b8cad29641b3b4c8818",
+                "Title": "satu",
+                "firstName": "satu",
+                "middleName": "satu",
+                "lastName": "satu",
+                "username": "satu",
+                "gender": "male",
+                "company": "1995",
+                "address": "Jalan Teupineung No 33 Merduati Banda Aceh",
+                "phone": "+62085261400506",
+                "note": "sdfasdfaafdafasd",
+                "__v": 0
+            }],
         })
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: error.response.data.message,
         })
     }
 }
@@ -116,23 +124,29 @@ export const searchContact = (q) => async dispatch => {
 export const getOneContact = (id) => async dispatch => {
     Swal.showLoading()
     try {
-        const { data } = await axios({
-            method: 'get',
-            url: '/contacts/'+id,
-            headers: {
-                token : localStorage.getItem('token')
-            }
-        })
-        Swal.close()
+       Swal.close()
        return dispatch ({
             type: 'GET_ONE_CONTACT',
-            data
+            data:  {
+                "_id": "5de3652c2b2eba589cc02cdc",
+                "userId": "5ddf8b8cad29641b3b4c8818",
+                "Title": "satu",
+                "firstName": "satu",
+                "middleName": "satu",
+                "lastName": "satu",
+                "username": "satu",
+                "gender": "male",
+                "company": "1995",
+                "address": "Jalan Teupineung No 33 Merduati Banda Aceh",
+                "phone": "+62085261400506",
+                "note": "sdfasdfaafdafasd",
+                "__v": 0
+            },
         })
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: error.response.data.message,
         })
     }
 }
